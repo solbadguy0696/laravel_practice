@@ -14,7 +14,8 @@ class TodoController extends Controller
     public function index()
     {
         //
-        return "Hello world!!";
+        // return "Hello world!!";
+        return view('todo.index'); // 追記
     }
 
     /**
