@@ -18,13 +18,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>静的なTodoです</td>
-                <td>2017-01-01 00:00:00</td>
-                <td>2017-01-10 00:00:00</td>
-                <td><a class="btn btn-info" href="">編集</a></td>
-                <td><button class="btn btn-danger" type="submit">削除</button></td>
-            </tr>
+            @foreach($todos as $todo)
+                <tr>
+                    <td>{{{ $todo->title }}}</td>
+                    <td>{{{ $todo->created_at }}}</td>
+                    <td>{{{ $todo->updated_at }}}</td>
+                    <td><a class="btn btn-info" href="{{{ route('todo.edit', $todo->id) }}}">編集</a></td>
+                    {!! Form::open(['route' => ['todo.destroy', $todo->id], 'method' => 'DELETE']) !!}
+                        <td>
+                            <button class="btn btn-danger" type="submit">削除</button>
+                        </td>
+                    {!! Form::close() !!}
+                </tr>
+            @endforeach
         </tbody>
     </table>
 
